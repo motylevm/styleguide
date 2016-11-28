@@ -1,7 +1,7 @@
 
 Avito ProTools team Swift style guide
 
-v 0.6.0
+v 0.6.1
 
 #1. Basics
 
@@ -14,9 +14,9 @@ Use descriptive names with camel case for classes, methods, variables, etc. Type
 For functions and init methods, prefer named parameters for all arguments unless the context is very clear. Include external parameter names if it makes function calls more readable.
 
 ```swift
-func date(fromString dateString: String) -> NSDate
+func date(fromString dateString: String) -> Date
 func convertPointAt(column column: Int, row: Int) -> CGPoint
-func timedAction(afterDelay delay: TimeInterval, perform action: Action) -> SKAction!
+func timedAction(afterDelay delay: TimeInterval, perform action: Action) -> SKAction
 ```
 
 For methods, follow the standard Apple convention of referring to the first parameter in the method name:
@@ -24,12 +24,12 @@ For methods, follow the standard Apple convention of referring to the first para
 ```swift
 class Counter {
 
-	// MARK: - Mathods -
-    func combineWith(otherCounter: Counter, options: [String: Any]?) { 
+	// MARK: - Methods -
+    func combine(with otherCounter: Counter, options: [String: Any]?) { 
         ... 
     }
     
-    func incrementBy(amount: Int) { 
+    func increment(by amount: Int) { 
         ... 
     }
 }
@@ -64,28 +64,6 @@ Method braces and other braces (if/else/switch/while etc.) always open on the sa
 if user.isReady {
     ...
 } else {
-    ...
-}
-```
-
-Exceptions can be made for complex multiline conditions and long func declarations:
-
-```swift
-if let user = user,
-   user.isReady 
-{
-    ...
-} else {
-    ...
-}
-```
-
-```swift
-func update(with item: Item,
-            info userInfo: [String: Any]? = nil,
-            options: [String: Any]? = nil,
-            user: User) -> Bool 
-{
     ...
 }
 ```
@@ -362,3 +340,17 @@ a.map {
 }
 ```
 
+## 2.3 Aggregating protocols
+
+Aggregate protocols through typealias:
+
+```swift
+typealias CollectionViewProtocol = UICollectionViewDataSource & UICollectionViewDelegate
+```
+
+But not: 
+
+```swift
+protocol CollectionViewProtocol: UICollectionViewDataSource, UICollectionViewDelegate {
+}
+```
