@@ -3,9 +3,9 @@ Avito ProTools team Swift style guide
 
 v 0.6.1
 
-#1. Basics
+# 1. Basics
 
-##1.1 Naming
+## 1.1 Naming
 
 ### 1.1.1 General
 
@@ -76,7 +76,7 @@ Blank line should be placed after braces if there are more than one code line:
 
 ```swift
 if user.isReady {
-    user.Run()
+    user.run()
 }
 ```
 
@@ -125,13 +125,20 @@ func doWork() {
 }
 ```
 
-Calling super init:
+Calling super:
 
 ```swift
 init(user: User) {
 	super.init()
 
 	self.user = user 
+}
+```
+```swift
+override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    ...
 }
 ```
 
@@ -163,7 +170,6 @@ var diameter: Double {
 
 ```swift
 var diameter: Double {
-    
     get {
     	radius * 2
     } 
@@ -259,6 +265,130 @@ final class MyClass {
 }
 ```
 
+## 1.13 Marks
+
+Marks syntax:
+```swift
+// MARK: - <Name> -
+```
+
+Required: 
+
+Mark protocols conformance methods:
+
+```swift
+final class MyClass: Cancelable {
+    
+    // MARK: - Cancelable -
+    func cancel() {
+        ...
+    }
+}
+```
+
+Preferred: 
+
+Mark all class methods:
+
+```swift
+final class MyViewController: UIViewController {
+    
+    // MARK: - Properties -
+    var model: Model? = nil
+    
+    // MARK: - UIViewController -
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        ...
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        ...
+    }
+    
+    // MARK: - Navigation -
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        ...
+    }
+}
+```
+
+```swift
+final class MyClass {
+    
+    // MARK: - Properties -
+    var a: A?
+    var b: B?
+
+    // MARK: - Init -
+    init(a: A?, b: B?) {
+
+        self.a = a
+        self.b = b
+    }
+
+    convenience init() {
+        self.init(a: nil, b: nil)
+    }
+}
+```
+
+## 1.14 Guard
+
+### 1.14.1 Basics
+
+Use guard where possible:
+
+```swift
+func someFunc(a: A?) -> B? {
+    guard let a = a else { return nil }
+
+    ...
+}
+```
+
+```swift
+for item in Items {
+    guard let name = item.name else { continue }
+    
+    ...
+}
+```
+
+Not: 
+
+```swift
+for item in Items {
+
+    if let name = item.name {
+        ...
+    }
+}
+```
+
+### 1.14.2 Formatting
+
+Place return statement on same line if it's short like: 
+
+```swift
+return value
+```
+
+Prefer split guard if multiple variables declared:
+
+```swift
+func run(a: A?, b: B?) -> C {
+    
+    guard let a = a else { return nil }
+    guard let b = b where b.value > 0 else { return nil }
+
+    ...
+}
+```
+
 # 2 Best Practice
 
 ## 2.1 Classes and Structures
@@ -306,7 +436,7 @@ Avoid using extensions in same file, use // MARK: - <NAME> -  instead.
 
 ### 2.2.1 Basics
 
-Use functional programming where it fit well.
+Use functional programming where it fits well.
 
 ### 2.2.2 Loops
 
