@@ -1,7 +1,7 @@
 
 Avito ProTools team Swift style guide
 
-v 0.6.1
+v 0.6.2
 
 # 1. Basics
 
@@ -351,7 +351,7 @@ func someFunc(a: A?) -> B? {
 ```
 
 ```swift
-for item in Items {
+for item in items {
     guard let name = item.name else { continue }
     
     ...
