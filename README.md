@@ -84,7 +84,7 @@ if user.isReady {
 if user.isReady {
 
 	user.prepare()
-    user.Run()
+    user.run()
 }
 ```
 
