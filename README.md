@@ -94,7 +94,7 @@ func update(with item: Item,
 
 There should be exactly one blank line between methods to aid in visual clarity and organization. Whitespace within methods should separate functionality, but having too many sections in a method often means you should refactor into several methods.
 
-Blank line should be placed after braces if there are more htan one code line:
+Blank line should be placed after braces if there are more than one code line:
 
 ```swift
 if user.isReady {
