@@ -1,5 +1,5 @@
 
-Avito ProTools team swift style guide
+Avito ProTools team Swift style guide
 
 v 0.6.0
 
