@@ -230,7 +230,7 @@ Constants are defined using the let keyword, and variables with the var keyword.
 
 ## 1.12 Type Inference
 
-Prefer compact code and let the compiler infer the type for local variables, but not for class/struct properties. In case of class/struct properties implicit type declaration only allowed for boolean, interger and double constants:
+Prefer compact code and let the compiler infer the type for local variables, but not for class/struct properties. In case of class/struct properties implicit type declaration only allowed for boolean, interger, string (not empty) and double constants plus direct constructor calls:
 
 ```swift
 final class MyClass {
@@ -238,9 +238,10 @@ final class MyClass {
 	// MARK: - Properties -
 	var property1 = false
 	var property2: [String: Any] = SomeClass.calculateProperty2()
-	var property3: String = ""
+	var property3: = "SomeString"
 	var property4: [String] = []
     var property5 = 0
+    var property6 = SomeClass()
 
 	// MARK: - Mеthods -
 	func method1() {
@@ -452,24 +453,35 @@ collection.forEach {
 Use map or flatMap to transform one collection to another:
 
 ```swift
+let b = a.map { ... }
+```
+
+or multiline:
+
+```swift
 let b = a.map { 
-	...
+    
+    ... 
+    ...
 }
 ```
+
 ### 2.2.3 Optionals
 
 Consider using map or flatMap to unwrap optionals:
 
 ```swift
-let b = a.map { 
-	B($0)
-}
+let b = a.map { B($0) }
 ```
 ```swift
 var a: SomeType?
 
-a.map { 
-	doSomething(a: $0)
+a.map { doSomething(a: $0) }
+
+a.map {
+    
+    let c = SomeClass(a: a)
+    c.doSomething()
 }
 ```
 
