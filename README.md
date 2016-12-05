@@ -230,25 +230,26 @@ Constants are defined using the let keyword, and variables with the var keyword.
 
 ## 1.12 Type Inference
 
-Prefer compact code and let the compiler infer the type for local variables, but not for class/struct properties:
+Prefer compact code and let the compiler infer the type for local variables, but not for class/struct properties. In case of class/struct properties implicit type declaration only allowed for boolean, interger and double constants:
 
 ```swift
 final class MyClass {
 	
 	// MARK: - Properties -
-	var property1: Bool = false
+	var property1 = false
 	var property2: [String: Any] = SomeClass.calculateProperty2()
 	var property3: String = ""
 	var property4: [String] = []
+    var property5 = 0
 
-
-	// MARK: - Mathods -
+	// MARK: - Mеthods -
 	func method1() {
 
 		var p1 = false
 		var p2: [String: Any] = SomeClass.calculateProperty2()
 		var p3 = ""
 		var p4 = [String]()
+        var p5 = 0
 	}
 }
 ```
