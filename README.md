@@ -466,8 +466,10 @@ let b = a.map {
 }
 ```
 ```swift
+var a: SomeType?
+
 a.map { 
-	$0.doSomething()
+	doSomething(a: $0)
 }
 ```
 
